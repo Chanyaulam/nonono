@@ -1,0 +1,37 @@
+#include <Arduino.h>
+#include <Wire.h>
+#include <SoftwareSerial.h>
+
+#include <Servo.h>
+
+double angle_rad = PI/180.0;
+double angle_deg = 180.0/PI;
+Servo servo_9;
+
+void setup(){
+    Serial.begin(115200);
+    Serial.println("hello");
+    pinMode(9,OUTPUT);
+    servo_9.attach(9); // init pin
+    pinMode(5,OUTPUT);
+    digitalWrite(9,1);
+    servo_9.write(90); // write to servo
+    Serial.println("hello");
+    servo_9.write(90); // write to servo
+    tone(9,262,500); // write to buzzer
+    delay(500);
+    analogWrite(5,0);
+    digitalWrite(9,1);
+}
+
+void loop(){
+    _loop();
+}
+
+void _delay(float seconds){
+    long endTime = millis() + seconds * 1000;
+    while(millis() < endTime)_loop();
+}
+
+void _loop(){
+}
