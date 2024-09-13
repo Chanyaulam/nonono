@@ -1,0 +1,44 @@
+#include <Arduino.h>
+#include <Wire.h>
+#include <SoftwareSerial.h>
+
+#include "LiquidCrystal_I2C.h"
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+
+double angle_rad = PI/180.0;
+double angle_deg = 180.0/PI;
+
+void setup(){
+    lcd.begin();
+    lcd.setCursor(0,0);
+    lcd.print("text");
+    lcd.print(12.34,2);
+    lcd.print(1234,HEX);
+    lcd.clear();
+    lcd.home();
+    lcd.print( "row1 text" );
+    lcd.setCursor(0,1);
+    lcd.print( "row2 text" );
+    lcd.clear();
+    lcd.backlight();
+    lcd.noBacklight();
+    lcd.blink();
+    lcd.display();
+    lcd.noDisplay();
+    lcd.cursor();
+    lcd.noCursor();
+    lcd.scrollDisplayRight();
+    lcd.scrollDisplayLeft();
+}
+
+void loop(){
+    _loop();
+}
+
+void _delay(float seconds){
+    long endTime = millis() + seconds * 1000;
+    while(millis() < endTime)_loop();
+}
+
+void _loop(){
+}
